@@ -1,0 +1,4 @@
+Tema 5. Sa se implementeze o aplicatie Java pentru gestiunea comenzilor din cadrul unui
+restaurant, care presupune lucrul cu fisiere, vectori si colectii in Java. Se va asigura
+persistenta datelor, utilizand fisiere (si/sau baze de date). Aplicatia permite realizarea unor
+situatii (rapoarte) privind valoarea comenzilor zilnice, cele mai vandute produse, etc.
