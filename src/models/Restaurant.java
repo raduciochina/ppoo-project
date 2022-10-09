@@ -1,5 +1,8 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Restaurant este o clasa Singleton deoarece din cerintele de implementare reiese faptul ca avem un singur restaurant
  * pentru care trebuie sa gestionam comenzile, asadar prin implementarea design-pattern-ului Singleton ne asiguram de
@@ -10,12 +13,14 @@ package models;
 public class Restaurant {
     private String name;
     private String address;
+    private List<Comanda> comenziRestaurant;
 
     private static Restaurant instance;
 
     private Restaurant(String name, String address){
         this.name = name;
         this.address = address;
+        this.comenziRestaurant = new ArrayList<>();
     }
 
     public static Restaurant getInstance(String name, String address){
@@ -25,4 +30,19 @@ public class Restaurant {
         return instance;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

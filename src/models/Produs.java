@@ -4,6 +4,14 @@ public class Produs {
     private String denumire;
     private Integer cantitate;
     private Double pret;
+    private Double valoare;
+
+    public Produs(String denumire, Integer cantitate, Double pret) {
+        this.denumire = denumire;
+        this.cantitate = cantitate;
+        this.pret = pret;
+
+    }
 
     public String getDenumire() {
         return denumire;
