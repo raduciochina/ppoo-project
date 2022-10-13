@@ -39,10 +39,6 @@ public class Restaurant {
         return name;
     }
 
-    public String showMeniu(){
-        return "";
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -68,10 +64,10 @@ public class Restaurant {
     public HashMap<ProductType, List<Product>> getMenu() {
         return menu;
     }
-    public Product getProductFromMenu(ProductType productType, String productName){
+    public Product getProductFromMenu(ProductType productType, String productName, Integer quantity){
         for(Product product : menu.get(productType)){
             if(product.getName().equals(productName)){
-                return product;
+                return new Product(product.getName(), quantity, product.getPrice());
             }
         }
         return null;

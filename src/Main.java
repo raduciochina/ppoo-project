@@ -14,8 +14,10 @@ public class Main {
         System.out.println("Meniul " + restaurant.getMenu());
 
         Order c1 = new Order();
-        c1.addProductToOrder(restaurant.getProductFromMenu(ProductType.FOOD, "Pizza Margarita"));
+        c1.addProductToOrder(restaurant.getProductFromMenu(ProductType.FOOD, "Pizza Margarita", 2));
+
         System.out.println(c1);
+        System.out.println(Order.calculateTotal(c1));
 
 
     }
