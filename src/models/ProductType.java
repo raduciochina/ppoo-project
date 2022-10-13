@@ -1,5 +1,5 @@
 package models;
 
-public enum TipProdus {
+public enum ProductType {
     MANCARE, BAUTURA, TIGARI
 }

@@ -1,21 +1,23 @@
-import models.Comanda;
-import models.Produs;
+import models.Order;
+import models.Product;
+import models.ProductType;
 import models.Restaurant;
-import models.TipProdus;
 import utils.Program;
-
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Program.startProgram();
+        //Program.startProgram();
+        Restaurant restaurant = Restaurant.getInstance("La Radu", "Bd. Compozitorilor 33");
+        System.out.println("Bine ati venit la restaurantul " + restaurant.getName()+"!\n");
 
-        Comanda c1 = new Comanda();
-        c1.addProdus(new Produs("aaaa", 2,5d, TipProdus.MANCARE));
-        c1.addProdus(new Produs("ssss", 3,5d, TipProdus.MANCARE));
-        c1.addProdus(new Produs("dddd", 4,5d, TipProdus.MANCARE));
+        Order c1 = new Order();
+//        c1.addProduct(new Product("aaaa", 2,5d, ProductType.MANCARE));
+//        c1.addProduct(new Product("ssss", 3,5d, ProductType.MANCARE));
+//        c1.addProduct(new Product("dddd", 4,5d, ProductType.MANCARE));
+        System.out.println(restaurant.getMenu());
         System.out.println(c1);
-        System.out.println(Comanda.calculateTotal(c1));
+        System.out.println(Order.calculateTotal(c1));
 
 
     }

@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -13,16 +14,14 @@ import java.util.List;
 public class Restaurant {
     private String name;
     private String address;
-
-    private final List<Produs> meniu = new ArrayList<>();
-    private List<Comanda> comenziRestaurant;
-
+    private final HashMap<ProductType, List<Product>> menu = new HashMap();
+    private List<Order> restaurantOrders;
     private static Restaurant instance;
 
     private Restaurant(String name, String address){
         this.name = name;
         this.address = address;
-        this.comenziRestaurant = new ArrayList<>();
+        this.restaurantOrders = new ArrayList<>();
         initMeniu();
     }
 
@@ -50,8 +49,8 @@ public class Restaurant {
         return "Restaurant{" +
                 "name='" + name + '\'' +
                 ", address='" + address + '\'' +
-                ", meniu=" + meniu +
-                ", comenziRestaurant=" + comenziRestaurant +
+                ", meniu=" + menu +
+                ", comenziRestaurant=" + restaurantOrders +
                 '}';
     }
 
@@ -59,22 +58,32 @@ public class Restaurant {
         return address;
     }
 
-
     public void setAddress(String address) {
         this.address = address;
     }
     public void initMeniu(){
-        meniu.add(new Produs("Pizza Margarita", 100, 28d, TipProdus.MANCARE));
-        meniu.add(new Produs("Pizza Napoli", 100, 30d, TipProdus.MANCARE));
-        meniu.add(new Produs("Pizza Capriciosa", 100, 25d, TipProdus.MANCARE));
-        meniu.add(new Produs("Coca-Cola", 100, 8d, TipProdus.BAUTURA));
-        meniu.add(new Produs("Sprite", 100, 8d, TipProdus.BAUTURA));
-        meniu.add(new Produs("Apa plata Dorna", 100, 5d, TipProdus.BAUTURA));
-        meniu.add(new Produs("Platoul Boierului", 100, 69d, TipProdus.MANCARE));
-        meniu.add(new Produs("Stella Artois", 100, 12d, TipProdus.BAUTURA));
-        meniu.add(new Produs("Bruschette", 100, 20d, TipProdus.MANCARE));
-        meniu.add(new Produs("Espresso", 100, 28d, TipProdus.BAUTURA));
-        meniu.add(new Produs("Vin Rose Mateus", 100, 55d, TipProdus.BAUTURA));
-        meniu.add(new Produs("Burger de Vita Angus", 100, 38d, TipProdus.MANCARE));
+
+        List<Product> food = new ArrayList<>();
+        List<Product> beverage = new ArrayList<>();
+        food.add(new Product("Pizza Margarita", 100, 28d));
+        food.add(new Product("Pizza Napoli", 100, 25d));
+        food.add(new Product("Pizza Capriciosa", 100, 29d));
+        food.add(new Product("Platoul Boierului", 100, 70d));
+        food.add(new Product("Bruschette", 100, 21d));
+        food.add(new Product("Burger de Vita Angus", 100, 37d));
+
+        beverage.add(new Product("Coca-Cola", 100, 8d));
+        beverage.add(new Product("Sprite", 100, 8d));
+        beverage.add(new Product("Apa plata Dorna", 100, 5d));
+        beverage.add(new Product("Stella Artois", 100, 12d));
+        beverage.add(new Product("Espresso", 100, 28d));
+        beverage.add(new Product("Vin Rose Mateus", 100, 55d));
+
+        this.menu.put(ProductType.MANCARE, food);
+        this.menu.put(ProductType.BAUTURA, beverage);
+    }
+
+    public HashMap<ProductType, List<Product>> getMenu() {
+        return menu;
     }
 }
