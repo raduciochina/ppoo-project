@@ -5,22 +5,12 @@ public class Product {
     private Integer quantity;
     private Double price;
 
-    private ProductType productType;
-//    private Double valoare;
-
     public Product(String name, Integer quantity, Double price) {
         if(name.equals("") || quantity<=1 || price<=0){
             throw new IllegalArgumentException("Produs invalid.");
         }
         this.name = name;
         this.quantity = quantity;
-        this.price = price;
-    }
-    public Product(String name, Double price) {
-        if(name.equals("") || price<=0){
-            throw new IllegalArgumentException("Produs invalid.");
-        }
-        this.name = name;
         this.price = price;
     }
 
@@ -49,11 +39,14 @@ public class Product {
     }
 
 
+
     @Override
     public String toString() {
         return "Produs{" +
                 "denumire='" + name + '\'' +
+                ", cantitate=" + quantity +
                 ", pret=" + price +
                 '}';
     }
+
 }

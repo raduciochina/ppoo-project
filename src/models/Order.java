@@ -17,8 +17,7 @@ public class Order {
     public void setOrderedProducts(List<Product> orderedProducts) {
         this.orderedProducts = orderedProducts;
     }
-
-    public void addProduct(Product product){
+    public void addProductToOrder(Product product){
         this.orderedProducts.add(product);
     }
     public void removeProduct(Product product){

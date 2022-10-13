@@ -14,7 +14,7 @@ import java.util.List;
 public class Restaurant {
     private String name;
     private String address;
-    private final HashMap<ProductType, List<Product>> menu = new HashMap();
+    private static final HashMap<ProductType, List<Product>> menu = new HashMap<>();
     private List<Order> restaurantOrders;
     private static Restaurant instance;
 
@@ -22,6 +22,9 @@ public class Restaurant {
         this.name = name;
         this.address = address;
         this.restaurantOrders = new ArrayList<>();
+        //initialize menu
+        menu.put(ProductType.FOOD, new ArrayList<>());
+        menu.put(ProductType.DRINK, new ArrayList<>());
         initMeniu();
     }
 
@@ -61,7 +64,19 @@ public class Restaurant {
     public void setAddress(String address) {
         this.address = address;
     }
-    public void initMeniu(){
+
+    public HashMap<ProductType, List<Product>> getMenu() {
+        return menu;
+    }
+    public Product getProductFromMenu(ProductType productType, String productName){
+        for(Product product : menu.get(productType)){
+            if(product.getName().equals(productName)){
+                return product;
+            }
+        }
+        return null;
+    }
+    private void initMeniu(){
 
         List<Product> food = new ArrayList<>();
         List<Product> beverage = new ArrayList<>();
@@ -79,11 +94,7 @@ public class Restaurant {
         beverage.add(new Product("Espresso", 100, 28d));
         beverage.add(new Product("Vin Rose Mateus", 100, 55d));
 
-        this.menu.put(ProductType.MANCARE, food);
-        this.menu.put(ProductType.BAUTURA, beverage);
-    }
-
-    public HashMap<ProductType, List<Product>> getMenu() {
-        return menu;
+        menu.put(ProductType.FOOD, food);
+        menu.put(ProductType.DRINK, beverage);
     }
 }
