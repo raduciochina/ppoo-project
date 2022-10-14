@@ -20,7 +20,7 @@ public class Order {
     public void setOrderedProducts(List<Product> orderedProducts) {
         this.orderedProducts = orderedProducts;
     }
-    public void addProductToOrder(Product product, int quantity){
+    public void addProductToOrder(Product product){
         this.orderedProducts.add(product);
     }
 
@@ -43,6 +43,8 @@ public class Order {
         return order.getOrderedProducts().stream()
                 .mapToDouble(p -> p.getQuantity() * p.getPrice()).sum();
     }
+
+
     @Override
     public String toString() {
         return "Order{" +

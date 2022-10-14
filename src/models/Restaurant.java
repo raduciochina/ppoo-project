@@ -114,13 +114,24 @@ public class Restaurant {
         menu.put(ProductType.FOOD, food);
         menu.put(ProductType.DRINK, beverage);
     }
-    public void addProductToExistingOrder(int id, String product, int quantity){
+    public void getOrderById(int id){
         for(Order order : this.restaurantOrders){
             if(order.getId() == id){
-                order.addProductToOrder(this.getProductFromMenu(product), quantity);
+                System.out.println(order);
             }
         }
     }
+    public void addProductToExistingOrder(int id, String product, int quantity){
+        for(Order order : this.restaurantOrders){
+            if(order.getId() == id){
+                Product menuProduct = getProductFromMenu(product);
+                menuProduct.setQuantity(menuProduct.getQuantity() - quantity);
+                Product productToAdd = new Product(menuProduct.getName(), quantity, menuProduct.getPrice());
+                order.addProductToOrder(productToAdd);
+            }
+        }
+    }
+
 
     public void addProductToOrder(String productName, int quantity) {
         Order order = new Order();
@@ -134,7 +145,23 @@ public class Restaurant {
         }
         product.setQuantity(product.getQuantity() - quantity);
         Product newProduct = new Product(product.getName(), quantity, product.getPrice());
-        order.addProductToOrder(newProduct, quantity);
+        order.addProductToOrder(newProduct);
         this.restaurantOrders.add(order);
+    }
+    public Double calculateTotalPrice(){
+        Double totalPrice = 0d;
+        for(Order order : this.restaurantOrders){
+            totalPrice += this.calculateOrderPrice(order.getId());
+        }
+        return totalPrice;
+
+    }
+    public Double calculateOrderPrice(int id){
+        for(Order order : this.restaurantOrders){
+            if(order.getId() == id){
+                return Order.calculateTotal(order);
+            }
+        }
+        return null;
     }
 }

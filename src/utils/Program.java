@@ -30,8 +30,9 @@ public class Program {
                     int quantity = new Scanner(System.in).nextInt();
                     restaurant.addProductToOrder(productName, quantity);
                     System.out.println("Produs adaugat, daca doriti sa mai comandati scrieti 'da', altfel scrieti 'nu'.");
-                    String answer = new Scanner(System.in).nextLine();
-                    while(true){
+
+
+                    while(new Scanner(System.in).nextLine().equals("da")){
                         System.out.println("Introduceti numele produsului pe care doriti sa il comandati: ");
                         String productName2 = new Scanner(System.in).nextLine();
                         System.out.println("Introduceti cantitatea dorita: ");
@@ -39,10 +40,16 @@ public class Program {
                         restaurant.addProductToExistingOrder(Order.getCounter(), productName2, quantity2);
                         System.out.println("Produs adaugat, daca doriti sa mai comandati scrieti 'da', altfel scrieti 'nu'.");
                         if(new Scanner(System.in).nextLine().equals("nu")){
+                            System.out.println("Comanda dumneavoastra este: ");
+                            restaurant.getOrderById(Order.getCounter());
+                            System.out.println("Totalul comenzii este: " + restaurant.calculateOrderPrice(Order.getCounter()) + " lei.");
                             break;
                         }
                     }
+                    System.out.println("Toate comenzile: ");
                     restaurant.getOrders();
+                    restaurant.showPrettyMenu();
+                    System.out.println("Valoarea comenzi totala: " + restaurant.calculateTotalPrice() + " lei.");
                     break;
                 default:
                     System.out.println("Va rugam sa alegeti o optiune valida!");
