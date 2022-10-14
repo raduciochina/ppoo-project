@@ -14,13 +14,14 @@ import java.util.List;
 public class Restaurant {
     private String name;
     private String address;
-    private static final HashMap<ProductType, List<Product>> menu = new HashMap<>();
+    private final HashMap<ProductType, List<Product>> menu = new HashMap<>();
     private List<Order> restaurantOrders;
     private static Restaurant instance;
 
-    private Restaurant(String name, String address){
-        this.name = name;
-        this.address = address;
+
+    private Restaurant(){
+        this.name = "La Radu";
+        this.address = "Bd. Compozitorilor 33";
         this.restaurantOrders = new ArrayList<>();
         //initialize menu
         menu.put(ProductType.FOOD, new ArrayList<>());
@@ -28,11 +29,17 @@ public class Restaurant {
         initMeniu();
     }
 
-    public static Restaurant getInstance(String name, String address){
+    public static Restaurant getInstance(){
         if(instance == null){
-            instance = new Restaurant(name,address);
+            instance = new Restaurant();
         }
         return instance;
+    }
+    public void getOrders(){
+        System.out.println(this.restaurantOrders);
+    }
+    public void addOrder(Order order){
+        this.restaurantOrders.add(order);
     }
 
     public String getName() {
@@ -64,14 +71,28 @@ public class Restaurant {
     public HashMap<ProductType, List<Product>> getMenu() {
         return menu;
     }
-    public Product getProductFromMenu(ProductType productType, String productName, Integer quantity){
-        for(Product product : menu.get(productType)){
-            if(product.getName().equals(productName)){
-                return new Product(product.getName(), quantity, product.getPrice());
+
+    public void showPrettyMenu(){
+        System.out.println("Meniul restaurantului " + this.name + " este:");
+        for(ProductType type : menu.keySet()){
+            System.out.println(type + ":");
+            for(Product product : menu.get(type)){
+                System.out.println(product);
+            }
+        }
+    }
+    public Product getProductFromMenu(String productName){
+        for(ProductType type : menu.keySet()){
+            for(Product product : menu.get(type)){
+                if(product.getName().equals(productName)){
+                    return product;
+                }
             }
         }
         return null;
+
     }
+
     private void initMeniu(){
 
         List<Product> food = new ArrayList<>();
@@ -92,5 +113,20 @@ public class Restaurant {
 
         menu.put(ProductType.FOOD, food);
         menu.put(ProductType.DRINK, beverage);
+    }
+
+    public void addProductToOrder(String productName, int quantity) {
+        Product product = getProductFromMenu(productName);
+        if(product == null){
+            throw new IllegalArgumentException("Produsul nu exista in meniu.");
+        }
+        if(product.getQuantity() < quantity){
+            throw new IllegalArgumentException("Cantitatea ceruta nu este disponibila.");
+        }
+        product.setQuantity(product.getQuantity() - quantity);
+        Product newProduct = new Product(product.getName(), quantity, product.getPrice());
+        Order order = new Order();
+        order.addProductToOrder(newProduct);
+        this.restaurantOrders.add(order);
     }
 }
