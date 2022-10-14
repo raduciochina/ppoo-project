@@ -1,0 +1,73 @@
+[
+  {
+    "name": "Espresso",
+    "quantity": 100,
+    "price": 6
+  },
+  {
+    "name": "Coca Cola",
+    "quantity": 100,
+    "price": 6
+  },
+  {
+    "name": "Fanta",
+    "quantity": 100,
+    "price": 6
+  },
+  {
+    "name": "Sprite",
+    "quantity": 100,
+    "price": 6
+  },
+  {
+    "name": "Apa plata",
+    "quantity": 100,
+    "price": 5
+  },
+  {
+    "name": "Apa minerala",
+    "quantity": 100,
+    "price": 5
+  },
+  {
+    "name": "Stella Artois",
+    "quantity": 100,
+    "price": 9
+  },
+  {
+    "name": "Heineken",
+    "quantity": 100,
+    "price": 8
+  },
+  {
+    "name": "Corona",
+    "quantity": 100,
+    "price": 12
+  },
+  {
+    "name": "Budweiser",
+    "quantity": 100,
+    "price": 11
+  },
+  {
+    "name": "Vin alb sec Recas",
+    "quantity": 100,
+    "price": 45
+  },
+  {
+    "name": "Vin alb demisesc Cricova",
+    "quantity": 100,
+    "price": 49
+  },
+  {
+    "name": "Vin rose Mateus",
+    "quantity": 100,
+    "price": 55
+  },
+  {
+    "name": "Jack Daniels",
+    "quantity": 100,
+    "price": 25
+  }
+
+]

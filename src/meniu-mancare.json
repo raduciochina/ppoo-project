@@ -1,0 +1,73 @@
+[
+    {
+      "name": "Pizza Napoli",
+      "quantity": 100,
+      "price": 28
+    },
+  {
+      "name": "Pizza Margarita",
+      "quantity": 100,
+      "price": 25
+    },
+  {
+      "name": "Pizza Roma",
+      "quantity": 100,
+      "price": 32
+    },
+  {
+      "name": "Pizza Hawaii",
+      "quantity": 100,
+      "price": 29
+    },
+  {
+      "name": "Pizza Pepperoni",
+      "quantity": 100,
+      "price": 30
+    },
+  {
+      "name": "Pizza Vegetariana",
+      "quantity": 100,
+      "price": 22
+    },
+  {
+      "name": "Pizza Quattro Stagioni",
+      "quantity": 100,
+      "price": 33
+    },
+   {
+      "name": "Pizza Funghi",
+      "quantity": 100,
+      "price": 26
+    },
+   {
+      "name": "Pizza Diavola",
+      "quantity": 100,
+      "price": 28
+    },
+  {
+      "name": "Pizza Capricciosa",
+      "quantity": 100,
+      "price": 30
+    },
+  {
+      "name": "Pizza Prosciutto",
+      "quantity": 100,
+      "price": 32
+    },
+   {
+      "name": "Pizza Quattro Formaggi",
+      "quantity": 100,
+      "price": 32
+    },
+   {
+      "name": "Pizza Calzone",
+      "quantity": 100,
+      "price": 22
+    },
+  {
+      "name": "Pizza Marinara",
+      "quantity": 100,
+      "price": 34
+    }
+
+]

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
+    private static int counter;
+    private int id;
     private List<Product> orderedProducts;
 
     public Order() {
+        this.id = ++counter;
         this.orderedProducts = new ArrayList<>();
     }
 
@@ -30,6 +33,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
+                "id= " + id + " " +
                 "orderedProducts=" + orderedProducts +
                 '}';
     }
