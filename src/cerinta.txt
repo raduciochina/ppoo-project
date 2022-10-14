@@ -6,34 +6,38 @@ situatii (rapoarte) privind valoarea comenzilor zilnice, cele mai vandute produs
 
 Cerinte de implementarre
 1. Lucrul cu fișiere text sau binare pentru operații de salvare/restaurare date și pentru realizare
-statistici/rapoarte din aplicație (1 p);
+statistici/rapoarte din aplicație (1 p); --JSON sau XML
 
 2. Asigurare mecanism de salvare a datelor la închiderea aplicației și restaurarea acestora la
-relansarea aplicației, prin actualizarea fișierului cu datele de intrare (1 p);
+relansarea aplicației, prin actualizarea fișierului cu datele de intrare (1 p); -- actualizare meniu
+la inchiderea aplicatiei/dupa fiecare comanda
 
 3. Lucrul cu minim două masive uni/bidimensionale (vectori, matrici) de tipuri de date
 fundamentale și minim două colecții diferite de obiecte din clasele definite, în funcție de
-specificațiile proiectului (1 p);
+specificațiile proiectului (1 p); -- HashMap, List, vectori si matrici pula mea
 
 4. Lucrul cu o bază de date pentru implementarea operațiilor CRUD, dacă cerința proiectului
-solicită expres acest lucru (1 p);
+solicită expres acest lucru (1 p); -- nu pare sa fie cazul
 
 5. Toate modificările asupra datelor și obiectelor de lucru se fac în memorie, în cadrul
 vectorilor și colecțiilor definite, iar salvarea în fișier(e)/bază de date se realizează la
-închiderea aplicației (1 p);
+închiderea aplicației (1 p); -- aha
 
 6. Validarea datelor de lucru, atât cele citite de la consolă, cât și cele preluate din fișiere de
 intrare, utilizând mecanismul de gestiune a excepțiilor, atât prin folosirea claselor standard
 de excepții, cât și prin definirea de către programator a unor excepții specifice (1 p);
+-- ok
 
 7. Asigurarea unui flux funcțional logic al aplicației, din momentul deschiderii și încărcării
 cu date până la momentul închiderii, prin utilizarea unui meniu cu opțiuni clare oricărui
 utilizator (1 p);
+--cam greu de facut
 
 8. Proiectul să fie complet funcțional, să nu conțină erori de compilare sau execuție (1 p);
+-- sper si eu
 
 9. Realizarea unei documentații în Microsoft Word aferentă proiectului, pe baza indicațiilor
-specificate la curs/seminar (2 p).
+specificate la curs/seminar (2 p). -- JavaDoc
 
 
 Total = 10 puncte

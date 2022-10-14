@@ -114,8 +114,17 @@ public class Restaurant {
         menu.put(ProductType.FOOD, food);
         menu.put(ProductType.DRINK, beverage);
     }
+    public void addProductToExistingOrder(int id, String product, int quantity){
+        for(Order order : this.restaurantOrders){
+            if(order.getId() == id){
+                order.addProductToOrder(this.getProductFromMenu(product), quantity);
+            }
+        }
+    }
 
     public void addProductToOrder(String productName, int quantity) {
+        Order order = new Order();
+
         Product product = getProductFromMenu(productName);
         if(product == null){
             throw new IllegalArgumentException("Produsul nu exista in meniu.");
@@ -125,8 +134,7 @@ public class Restaurant {
         }
         product.setQuantity(product.getQuantity() - quantity);
         Product newProduct = new Product(product.getName(), quantity, product.getPrice());
-        Order order = new Order();
-        order.addProductToOrder(newProduct);
+        order.addProductToOrder(newProduct, quantity);
         this.restaurantOrders.add(order);
     }
 }

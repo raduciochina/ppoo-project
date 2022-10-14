@@ -20,9 +20,22 @@ public class Order {
     public void setOrderedProducts(List<Product> orderedProducts) {
         this.orderedProducts = orderedProducts;
     }
-    public void addProductToOrder(Product product){
+    public void addProductToOrder(Product product, int quantity){
         this.orderedProducts.add(product);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void removeProduct(Product product){
         this.orderedProducts.remove(product);
     }
