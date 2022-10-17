@@ -1,5 +1,9 @@
 package models;
 
+import utils.Json;
+
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +23,7 @@ public class Restaurant {
     private static Restaurant instance;
 
 
-    private Restaurant(){
+    private Restaurant() throws IOException {
         this.name = "La Radu";
         this.address = "Bd. Compozitorilor 33";
         this.restaurantOrders = new ArrayList<>();
@@ -29,7 +33,7 @@ public class Restaurant {
         initMeniu();
     }
 
-    public static Restaurant getInstance(){
+    public static Restaurant getInstance() throws IOException {
         if(instance == null){
             instance = new Restaurant();
         }
@@ -92,24 +96,35 @@ public class Restaurant {
         return null;
 
     }
+    public void addProductToMenu(Product product, ProductType type){
+        menu.get(type).add(product);
+    }
+//    public void addProductToMenu(Product product){
+//        menu.get(product.getType()).add(product);
+//    }
 
-    private void initMeniu(){
+    private void initMeniu() throws IOException {
+        //todo: read from json/text file
+        //todo: write to json/text file
 
-        List<Product> food = new ArrayList<>();
-        List<Product> beverage = new ArrayList<>();
-        food.add(new Product("Pizza Margarita", 100, 28d));
-        food.add(new Product("Pizza Napoli", 100, 25d));
-        food.add(new Product("Pizza Capriciosa", 100, 29d));
-        food.add(new Product("Platoul Boierului", 100, 70d));
-        food.add(new Product("Bruschette", 100, 21d));
-        food.add(new Product("Burger de Vita Angus", 100, 37d));
+        List<Product> food;
+        List<Product> beverage;
+//        food.add(new Product("Pizza Margarita", 100, 28d));
+//        food.add(new Product("Pizza Napoli", 100, 25d));
+//        food.add(new Product("Pizza Capriciosa", 100, 29d));
+//        food.add(new Product("Platoul Boierului", 100, 70d));
+//        food.add(new Product("Bruschette", 100, 21d));
+//        food.add(new Product("Burger de Vita Angus", 100, 37d));
+//
+//        beverage.add(new Product("Coca-Cola", 100, 8d));
+//        beverage.add(new Product("Sprite", 100, 8d));
+//        beverage.add(new Product("Apa plata Dorna", 100, 5d));
+//        beverage.add(new Product("Stella Artois", 100, 12d));
+//        beverage.add(new Product("Espresso", 100, 28d));
+//        beverage.add(new Product("Vin Rose Mateus", 100, 55d));
 
-        beverage.add(new Product("Coca-Cola", 100, 8d));
-        beverage.add(new Product("Sprite", 100, 8d));
-        beverage.add(new Product("Apa plata Dorna", 100, 5d));
-        beverage.add(new Product("Stella Artois", 100, 12d));
-        beverage.add(new Product("Espresso", 100, 28d));
-        beverage.add(new Product("Vin Rose Mateus", 100, 55d));
+        food = Json.readProducts(Path.of("src\\meniu-mancare.json"));
+        beverage = Json.readProducts(Path.of("src\\meniu-bautura.json"));
 
         menu.put(ProductType.FOOD, food);
         menu.put(ProductType.DRINK, beverage);

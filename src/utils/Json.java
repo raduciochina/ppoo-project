@@ -1,6 +1,8 @@
 package utils;
 
+import com.google.gson.Gson;
 import models.Order;
+import models.Product;
 import models.Restaurant;
 
 import java.io.IOException;
@@ -16,4 +18,12 @@ import java.util.List;
  */
 
 public class Json {
+    public static List<Product> readProducts(Path path) throws IOException {
+        Gson gson = new Gson();
+        try (Reader reader = Files.newBufferedReader(path)) {
+            return List.of(gson.fromJson(reader, Product[].class));
+        }
+    }
+
+
 }
