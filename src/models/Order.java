@@ -68,7 +68,7 @@ public class Order {
     }
 
     public double calculateTVA() {
-        return (calculateOrderPrice()*0.05);
+        return Math.round(calculateOrderPrice()*0.05);
     }
 
     public double calculateTips() {

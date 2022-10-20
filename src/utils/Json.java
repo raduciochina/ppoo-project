@@ -44,6 +44,19 @@ public class Json {
     public static void updatePrice(String oldProductName, Product newProduct, String path) throws IOException {
         throw new RuntimeException("Missing implementation");
     }
+
+    public static void refreshMenuStock(String productName, int quantity, String path) throws IOException {
+        HashMap<String, List<Product>> products = readProducts(path);
+        for(String type : products.keySet()){
+            for(Product product : products.get(type)){
+                if(product.getName().equals(productName)){
+                    product.setQuantity(product.getQuantity() - quantity);
+                }
+            }
+        }
+        mapper.writeValue(Path.of(path).toFile(), products);
+
+    }
     //export json with orders ??
 
 }

@@ -52,15 +52,19 @@ public class Product {
         this.price = price;
     }
 
-
+    public String toStringNice() {
+        return
+                 name +
+                " ----------------------------------- "  + price +
+                " RON";
+    }
 
     @Override
     public String toString() {
-        return "Produs{" +
-                "denumire='" + name + '\'' +
-                ", cantitate=" + quantity +
-                ", pret=" + price +
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
                 '}';
     }
-
 }

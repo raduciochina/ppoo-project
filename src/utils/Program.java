@@ -34,18 +34,19 @@ public class Program {
                 case 1:
                     System.out.println("Introduceti numele produsului pe care doriti sa il comandati: ");
                     String productName = new Scanner(System.in).nextLine();
+                    //if(productName.)
                     System.out.println("Introduceti cantitatea dorita: ");
                     int quantity = new Scanner(System.in).nextInt();
                     restaurant.addProductToOrder(productName, quantity);
+                    restaurant.refreshProductStock(productName, quantity);
                     System.out.println("Produs adaugat, daca doriti sa mai comandati scrieti 'da', altfel scrieti 'nu'.");
-
-
                     while (new Scanner(System.in).nextLine().equals("da")) {
                         System.out.println("Introduceti numele produsului pe care doriti sa il comandati: ");
                         String productName2 = new Scanner(System.in).nextLine();
                         System.out.println("Introduceti cantitatea dorita: ");
                         int quantity2 = new Scanner(System.in).nextInt();
                         restaurant.addProductToExistingOrder(Order.getCounter(), productName2, quantity2);
+                        restaurant.refreshProductStock(productName2, quantity2);
                         System.out.println("Produs adaugat, daca doriti sa mai comandati scrieti 'da', altfel scrieti 'nu'.");
                         if (new Scanner(System.in).nextLine().equals("nu")) {
                             System.out.println("Comanda dumneavoastra este: ");
@@ -112,7 +113,7 @@ public class Program {
                                 }
                                 break;
                             case 5:
-                                restaurant.showPrettyMenu();
+                                restaurant.showNormalMenu();
                                 break;
                             case 6:
                                 System.out.println("Introduceti numarul comenzii pe care doriti sa o vizualizati: ");

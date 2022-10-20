@@ -75,7 +75,16 @@ public class Restaurant {
         for(String type : menu.keySet()){
             System.out.println(type + ":");
             for(Product product : menu.get(type)){
-                System.out.println(product);
+                System.out.println(product.toStringNice());
+            }
+        }
+    }
+    public void showNormalMenu(){
+        System.out.println("Meniul restaurantului " + this.name + " este:");
+        for(String type : menu.keySet()){
+            System.out.println(type + ":");
+            for(Product product : menu.get(type)){
+                System.out.println(product.toString());
             }
         }
     }
@@ -90,9 +99,7 @@ public class Restaurant {
         return null;
 
     }
-
     public void initMeniu() throws IOException {
-        //todo: write to json/text file
         this.menu.putAll(Json.readProducts("src\\meniu.json"));
     }
     public void getOrderById(int id){
@@ -168,5 +175,13 @@ public class Restaurant {
         Product newProduct = new Product(oldProductName, product.getQuantity(), newPrice);
         //Json.updatePrice(oldProductName, newProduct);
 
+    }
+
+    public void refreshProductStock(String productName, int quantity) throws IOException {
+        Product product = getProductFromMenu(productName);
+        if(product == null){
+            throw new IllegalArgumentException("Produsul nu exista in meniu");
+        }
+        Json.refreshMenuStock(productName, quantity, "src\\meniu.json");
     }
 }
