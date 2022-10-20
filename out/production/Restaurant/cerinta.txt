@@ -11,7 +11,7 @@ statistici/rapoarte din aplicație (1 p); --JSON sau XML
 2. Asigurare mecanism de salvare a datelor la închiderea aplicației și restaurarea acestora la
 relansarea aplicației, prin actualizarea fișierului cu datele de intrare (1 p); -- actualizare meniu
 la inchiderea aplicatiei/dupa fiecare comanda
-
+[][]
 3. Lucrul cu minim două masive uni/bidimensionale (vectori, matrici) de tipuri de date
 fundamentale și minim două colecții diferite de obiecte din clasele definite, în funcție de
 specificațiile proiectului (1 p); -- HashMap, List, vectori si matrici pula mea

@@ -14,11 +14,13 @@ import java.util.List;
  * faptul ca aceasta entitate va fi una unica, iar de fiecare data cand se va incerca crearea unei alte instante va fi
  * returnata aceeasi instanta.
  * Restaurantul are ca atribute o denumire si o adresa fizica unde poate fi regasit.
+ * De asemenea, restaurantul are un meniu reprezentat de un HashMap care are ca cheie tipul produsului si ca valoare o lista
+ * de produse de acelasi tip. Totodata, la nivelul restaurantului se retine o lista de comenzi.
  */
 public class Restaurant {
     private String name;
     private String address;
-    private final HashMap<ProductType, List<Product>> menu = new HashMap<>();
+    private final HashMap<String, List<Product>> menu = new HashMap<>();
     private List<Order> restaurantOrders;
     private static Restaurant instance;
 
@@ -27,9 +29,6 @@ public class Restaurant {
         this.name = "La Radu";
         this.address = "Bd. Compozitorilor 33";
         this.restaurantOrders = new ArrayList<>();
-        //initialize menu
-        menu.put(ProductType.FOOD, new ArrayList<>());
-        menu.put(ProductType.DRINK, new ArrayList<>());
         initMeniu();
     }
 
@@ -42,16 +41,11 @@ public class Restaurant {
     public void getOrders(){
         System.out.println(this.restaurantOrders);
     }
-    public void addOrder(Order order){
-        this.restaurantOrders.add(order);
+    public List<Order> getOrderList(){
+        return this.restaurantOrders;
     }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override
@@ -72,13 +66,13 @@ public class Restaurant {
         this.address = address;
     }
 
-    public HashMap<ProductType, List<Product>> getMenu() {
+    public HashMap<String, List<Product>> getMenu() {
         return menu;
     }
 
     public void showPrettyMenu(){
         System.out.println("Meniul restaurantului " + this.name + " este:");
-        for(ProductType type : menu.keySet()){
+        for(String type : menu.keySet()){
             System.out.println(type + ":");
             for(Product product : menu.get(type)){
                 System.out.println(product);
@@ -86,7 +80,7 @@ public class Restaurant {
         }
     }
     public Product getProductFromMenu(String productName){
-        for(ProductType type : menu.keySet()){
+        for(String type : menu.keySet()){
             for(Product product : menu.get(type)){
                 if(product.getName().equals(productName)){
                     return product;
@@ -96,38 +90,10 @@ public class Restaurant {
         return null;
 
     }
-    public void addProductToMenu(Product product, ProductType type){
-        menu.get(type).add(product);
-    }
-//    public void addProductToMenu(Product product){
-//        menu.get(product.getType()).add(product);
-//    }
 
-    private void initMeniu() throws IOException {
-        //todo: read from json/text file
+    public void initMeniu() throws IOException {
         //todo: write to json/text file
-
-        List<Product> food;
-        List<Product> beverage;
-//        food.add(new Product("Pizza Margarita", 100, 28d));
-//        food.add(new Product("Pizza Napoli", 100, 25d));
-//        food.add(new Product("Pizza Capriciosa", 100, 29d));
-//        food.add(new Product("Platoul Boierului", 100, 70d));
-//        food.add(new Product("Bruschette", 100, 21d));
-//        food.add(new Product("Burger de Vita Angus", 100, 37d));
-//
-//        beverage.add(new Product("Coca-Cola", 100, 8d));
-//        beverage.add(new Product("Sprite", 100, 8d));
-//        beverage.add(new Product("Apa plata Dorna", 100, 5d));
-//        beverage.add(new Product("Stella Artois", 100, 12d));
-//        beverage.add(new Product("Espresso", 100, 28d));
-//        beverage.add(new Product("Vin Rose Mateus", 100, 55d));
-
-        food = Json.readProducts(Path.of("src\\meniu-mancare.json"));
-        beverage = Json.readProducts(Path.of("src\\meniu-bautura.json"));
-
-        menu.put(ProductType.FOOD, food);
-        menu.put(ProductType.DRINK, beverage);
+        this.menu.putAll(Json.readProducts("src\\meniu.json"));
     }
     public void getOrderById(int id){
         for(Order order : this.restaurantOrders){
@@ -178,5 +144,29 @@ public class Restaurant {
             }
         }
         return null;
+    }
+
+    public void addProductToMenu(String newProductType, String newProductName, Double newProductPrice, int newProductQuantity) throws IOException {
+        Product product = new Product(newProductName, newProductQuantity, newProductPrice);
+        Json.addProductToJson(newProductType, product, Path.of("src\\meniu.json"));
+    }
+
+    public void deleteProductFromMenu(String productNameToDelete) throws IOException {
+        Product product = getProductFromMenu(productNameToDelete);
+        if(product == null){
+            throw new IllegalArgumentException("Produsul nu exista in meniu.");
+        }
+        Json.removeProductFromJson(productNameToDelete, "src\\meniu.json");
+
+    }
+
+    public void updatePrice(String oldProductName, double newPrice) {
+        Product product = getProductFromMenu(oldProductName);
+        if(product == null){
+            throw new IllegalArgumentException("Produsul nu exista in meniu");
+        }
+        Product newProduct = new Product(oldProductName, product.getQuantity(), newPrice);
+        //Json.updatePrice(oldProductName, newProduct);
+
     }
 }

@@ -4,6 +4,7 @@ import models.Order;
 import models.Restaurant;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -53,10 +54,6 @@ public class Program {
                             break;
                         }
                     }
-//                    System.out.println("Toate comenzile: ");
-//                    restaurant.getOrders();
-//                    restaurant.showPrettyMenu();
-//                    System.out.println("Valoarea comenzi totala: " + restaurant.calculateTotalPrice() + " lei.");
                     break;
                 case 2:
                     String password = "admin";
@@ -79,12 +76,48 @@ public class Program {
                                 System.out.println("La revedere admin!");
                                 break;
                             case 1:
+                                System.out.println("Introduceti tipul produsului (FOOD or DRINK):");
+                                String newProductType = new Scanner(System.in).nextLine();
+                                System.out.println("Introduceti numele produsului pe care doriti sa il adaugati: ");
+                                String newProductName = new Scanner(System.in).nextLine();
+                                System.out.println("Introduceti pretul produsului: ");
+                                double newProductPrice = new Scanner(System.in).nextDouble();
+                                System.out.println("Introduceti cantitatea produsului: ");
+                                int newProductQuantity = new Scanner(System.in).nextInt();
+                                restaurant.addProductToMenu(newProductType, newProductName, newProductPrice, newProductQuantity);
+                                System.out.println("Produsul a fost adaugat cu succes!");
+                                break;
+                            case 2:
+                                System.out.println("Introduceti numele produsului pe care doriti sa il stergeti: ");
+                                String productNameToDelete = new Scanner(System.in).nextLine();
+                                restaurant.deleteProductFromMenu(productNameToDelete);
+                                System.out.println("Produsul a fost sters cu succes!");
+                                restaurant.initMeniu();
+                                break;
+                            case 3:
+                                System.out.println("Introduceti numele produsului pe care doriti sa il modificati: ");
+                                String oldProductName = new Scanner(System.in).nextLine();
+                                System.out.println("Introduceti noul pret al produsului: ");
+                                double newPrice = new Scanner(System.in).nextDouble();
+                                restaurant.updatePrice(oldProductName, newPrice);
+                                System.out.println("Produs modificat cu succes!");
                                 break;
                             case 4:
-                                restaurant.getOrders();
+                                System.out.println("Toate comenzile: ");
+                                List<Order> orders = restaurant.getOrderList();
+                                for (Order o : orders) {
+                                    System.out.println("Order nr. " + o.getId());
+                                    System.out.println("Total: " + o.calculateOrderPrice() + " lei");
+                                    System.out.println("TVA: " + o.calculateTVA() + " lei");
+                                }
                                 break;
                             case 5:
                                 restaurant.showPrettyMenu();
+                                break;
+                            case 6:
+                                System.out.println("Introduceti numarul comenzii pe care doriti sa o vizualizati: ");
+                                int orderNumber = new Scanner(System.in).nextInt();
+                                restaurant.getOrderById(orderNumber);
                                 break;
                             case 7:
                                 System.out.println("Introduceti id-ul comenzii pentru care doriti sa aflati pretul: ");

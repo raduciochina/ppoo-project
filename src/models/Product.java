@@ -1,9 +1,23 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * Clasa Product modeleaza un produs din meniul restaurantului.
+ * Aceasta clasa are ca atribute denumirea, pretul si cantitatea produsului comandat.
+ * Atributul cantitate este folosit atat in meniu pentru a se stii in prealabil de catre
+ * restaurant cat de multe produse de un anumit tip se pot vinde intr-o anumita zi cat si
+ * in comanda pentru a se stii de catre restaurant cat de multe produse de un anumit tip
+ * a comandat un client astfel incat sa se poata realiza actualizarea stocului.
+ */
 public class Product {
     private String name;
     private Integer quantity;
     private Double price;
+
+    private Product(){
+
+    }
 
     public Product(String name, Integer quantity, Double price) {
         if(name.equals("") || quantity<1 || price<=0){

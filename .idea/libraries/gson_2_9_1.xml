@@ -2,8 +2,14 @@
   <library name="gson-2.9.1">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../Downloads/gson-2.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Downloads/jar_files/jackson-annotations-2.14.0-rc2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Downloads/jar_files/jackson-core-2.14.0-rc2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Downloads/jar_files/jackson-databind-2.14.0-rc2.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="https://github.com/FasterXML/jackson" />
+      <root url="https://github.com/FasterXML/jackson-core" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>
