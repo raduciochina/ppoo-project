@@ -18,7 +18,6 @@ public class Product {
     private Product(){
 
     }
-
     public Product(String name, Integer quantity, Double price) {
         if(name.equals("") || quantity<1 || price<=0){
             throw new IllegalArgumentException("Produs invalid.");

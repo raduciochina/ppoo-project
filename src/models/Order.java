@@ -67,10 +67,18 @@ public class Order {
                 '}';
     }
 
+    /**
+     * Metoda ce returneaza TVA-ul din pretul unei comenzi, specific activitatii de restaurant (5%).
+     * @return
+     */
     public double calculateTVA() {
         return Math.round(calculateOrderPrice()*0.05);
     }
 
+    /**
+     * Metoda returneaza bacsisul recomandat (10% din valoarea comenzii).
+     * @return
+     */
     public double calculateTips() {
         return (calculateOrderPrice()*0.1);
     }
