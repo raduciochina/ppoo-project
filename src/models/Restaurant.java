@@ -2,8 +2,12 @@ package models;
 
 import utils.Json;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -138,7 +142,7 @@ public class Restaurant {
     /**
      * Metoda addProductToOrder este utilizata in momentul in care clientul realizeaza o comanda, se creeaza o instanta a clasei Order,
      * se extrage produsul comandat din meniu pe baza denumirii acestuia, se verifica stocul de la nivelul restaurantului si ulterior este adaugat in
-     * comanda si se actualizeaza stocul acestuia
+     * comanda si se actualizeaza stocul acestuia.
      * @param productName
      * @param quantity
      */
@@ -203,10 +207,24 @@ public class Restaurant {
         return null;
     }
 
+    /**
+     * Metoda addProductToMenu este folosita pentru adaugarea unui produs in meniu.
+     * @param newProductType
+     * @param newProductName
+     * @param newProductPrice
+     * @param newProductQuantity
+     * @throws IOException
+     */
     public void addProductToMenu(String newProductType, String newProductName, Double newProductPrice, int newProductQuantity) throws IOException {
         Product product = new Product(newProductName, newProductQuantity, newProductPrice);
         Json.addProductToJson(newProductType, product, Path.of("src\\meniu.json"));
     }
+
+    /**
+     * Metoda removeProductFromMenu este folosita pentru a sterge un produs din meniu.
+     * @param productNameToDelete
+     * @throws IOException
+     */
 
     public void deleteProductFromMenu(String productNameToDelete) throws IOException {
         Product product = getProductFromMenu(productNameToDelete);
@@ -217,21 +235,68 @@ public class Restaurant {
 
     }
 
-    public void updatePrice(String oldProductName, double newPrice) {
+    /**
+     * Metoda updatePrice este folosita pentru modificarea pretului unui produs din meniu.
+     * @param oldProductName
+     * @param newPrice
+     * @throws IOException
+     */
+    public void updatePrice(String oldProductName, double newPrice) throws IOException {
         Product product = getProductFromMenu(oldProductName);
         if(product == null){
             throw new IllegalArgumentException("Produsul nu exista in meniu");
         }
         Product newProduct = new Product(oldProductName, product.getQuantity(), newPrice);
-        //Json.updatePrice(oldProductName, newProduct);
+        Json.updatePrice(oldProductName, newProduct, "src\\meniu.json");
 
     }
 
+    /**
+     * Metoda updateQuantity este folosita pentru modificarea cantitatii unui produs din meniu.
+     * @param oldProductName
+     * @param newQuantity
+     * @throws IOException
+     */
+    public void updateQuantity(String oldProductName, int newQuantity) throws IOException {
+        Product product = getProductFromMenu(oldProductName);
+        if(product == null){
+            throw new IllegalArgumentException("Produsul nu exista in meniu");
+        }
+        Product newProduct = new Product(oldProductName, newQuantity, product.getPrice());
+        Json.updateQuantity(oldProductName, newProduct, "src\\meniu.json");
+    }
+
+    /**
+     * Metoda refreshProductStock este utilizata pentru modificarea cantitatii disponibile la nivelul restaurantului dintr-un anumit produs cand este efectuata o comanda.
+     * @param productName
+     * @param quantity
+     * @throws IOException
+     */
     public void refreshProductStock(String productName, int quantity) throws IOException {
         Product product = getProductFromMenu(productName);
         if(product == null){
             throw new IllegalArgumentException("Produsul nu exista in meniu");
         }
         Json.refreshMenuStock(productName, quantity, "src\\meniu.json");
+    }
+
+    /**
+     * Metoda generateZ este folosita pentru generarea unui raport fiscal Z intr-un fisier text.
+     * @param orders
+     * @throws IOException
+     */
+    public void generateZ(List<Order> orders) throws IOException {
+        String fileName = "Raport-Z-" + LocalDate.now().toString() + ".txt";
+        File file = new File(fileName);
+        if(file.createNewFile()){
+            FileWriter fileWriter = new FileWriter(fileName);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            for(Order order : orders){
+                bufferedWriter.write(order.toString());
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        }
+
     }
 }

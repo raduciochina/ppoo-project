@@ -9,7 +9,11 @@ import java.util.Scanner;
 
 /**
  * Clasa folosita pentru a porni programul in linia de comanda, prin metoda startProgram() se afiseaza meniul si se
- * asteapta input-ul utilizatorului pentru a se executa actiunile dorite.
+ * asteapta input-ul utilizatorului pentru a se executa actiunile dorite. Programul ofera functionalitatea de comandare
+ * de produse de catre client si de asemenea, din cadrul aceleiasi aplicatii se poate administra restaurantul printr-un
+ * meniu dedicat administratorului. Acest meniu al  administratorului ofera functionalitatea de a adauga produse noi,
+ * modificare produse, stergere produse, vizualizare stoc restaurant, vizualizare comenzi si date despre acestea, extragere raport fiscal
+ * Z in format text.
  */
 
 public class Program {
@@ -70,6 +74,7 @@ public class Program {
                         System.out.println("Pentru a afisa toate produsele dintr-o comanda apasati tasta 6.");
                         System.out.println("Pentru a afisa pretul unei comenzi apasati tasta 7.");
                         System.out.println("Pentru a afisa pretul total al comenzilor apasati tasta 8.");
+                        System.out.println("Pentru generarea raportului fiscal Z apasati tasta 9.");
                         System.out.println("Pentru a iesi apasati tasta 0.");
                         int option2 = new Scanner(System.in).nextInt();
                         switch (option2) {
@@ -101,7 +106,11 @@ public class Program {
                                 System.out.println("Introduceti noul pret al produsului: ");
                                 double newPrice = new Scanner(System.in).nextDouble();
                                 restaurant.updatePrice(oldProductName, newPrice);
+                                System.out.println("Introducti noua cantitate a produsului: ");
+                                int newQuantity = new Scanner(System.in).nextInt();
+                                restaurant.updateQuantity(oldProductName, newQuantity);
                                 System.out.println("Produs modificat cu succes!");
+                                restaurant.initMeniu();
                                 break;
                             case 4:
                                 System.out.println("Toate comenzile: ");
@@ -127,6 +136,10 @@ public class Program {
                                 break;
                             case 8:
                                 System.out.println(restaurant.calculateTotalPrice() + " lei");
+                                break;
+                            case 9:
+                                List<Order> orderList = restaurant.getOrderList();
+                                restaurant.generateZ(orderList);
                                 break;
                             default:
                                 System.out.println("Va rugam sa alegeti o optiune valida!");

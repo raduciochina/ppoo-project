@@ -2,12 +2,12 @@
   "DRINK": [
     {
       "name": "Espresso",
-      "quantity": 100,
+      "quantity": 97,
       "price": 6.0
     },
     {
       "name": "Coca Cola",
-      "quantity": 99,
+      "quantity": 93,
       "price": 6.0
     },
     {
@@ -62,7 +62,7 @@
     },
     {
       "name": "Vin rose Mateus",
-      "quantity": 100,
+      "quantity": 98,
       "price": 55.0
     },
     {
@@ -74,12 +74,12 @@
   "FOOD": [
     {
       "name": "Pizza Napoli",
-      "quantity": 100,
+      "quantity": 99,
       "price": 28.0
     },
     {
       "name": "Pizza Margarita",
-      "quantity": 100,
+      "quantity": 99,
       "price": 25.0
     },
     {
@@ -89,7 +89,7 @@
     },
     {
       "name": "Pizza Hawaii",
-      "quantity": 100,
+      "quantity": 99,
       "price": 29.0
     },
     {
@@ -109,12 +109,12 @@
     },
     {
       "name": "Pizza Funghi",
-      "quantity": 100,
+      "quantity": 98,
       "price": 26.0
     },
     {
       "name": "Pizza Diavola",
-      "quantity": 100,
+      "quantity": 98,
       "price": 28.0
     },
     {
@@ -134,12 +134,12 @@
     },
     {
       "name": "Pizza Calzone",
-      "quantity": 98,
+      "quantity": 95,
       "price": 22.0
     },
     {
       "name": "Ciorba de burta",
-      "quantity": 96,
+      "quantity": 91,
       "price": 18.0
     }
   ]
