@@ -295,8 +295,32 @@ public class Restaurant {
                 bufferedWriter.write(order.toString());
                 bufferedWriter.newLine();
             }
+            bufferedWriter.write("Total " + LocalDate.now() + "  = " + calculateTotalPrice() + " lei.");
             bufferedWriter.close();
         }
 
     }
+
+    //need to be tested
+    public List<Product> getTop3Products(){
+        List<Product> top3Products = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
+        for(Order order : this.restaurantOrders){
+            for(Product product : order.getOrderedProducts()){
+                products.add(product);
+            }
+        }
+        for(int i = 0; i < 3; i++){
+            Product maxProduct = products.get(0);
+            for(Product product : products){
+                if(product.getQuantity() > maxProduct.getQuantity()){
+                    maxProduct = product;
+                }
+            }
+            top3Products.add(maxProduct);
+            products.remove(maxProduct);
+        }
+        return top3Products;
+    }
+
 }

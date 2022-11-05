@@ -1,0 +1,3 @@
+Order {id=1, produse comandate=[Product{name='Pizza Roma', quantity=1, price=32.0}, Product{name='Pizza Vegetariana', quantity=1, price=22.0}], pret total=54.0, TVA=2.7}
+Order {id=2, produse comandate=[Product{name='Coca Cola', quantity=2, price=6.0}], pret total=12.0, TVA=0.6000000000000001}
+Order {id=3, produse comandate=[Product{name='Pizza Roma', quantity=1, price=32.0}, Product{name='Pizza Napoli', quantity=1, price=28.0}, Product{name='Pizza Funghi', quantity=2, price=26.0}], pret total=112.0, TVA=5.6000000000000005}
