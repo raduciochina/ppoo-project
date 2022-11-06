@@ -9,18 +9,12 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clasa Main este clasa principala a aplicatiei. Aceasta clasa contine metoda main in care
+ * este apelata metoda startProgram din cadrul clasei Program.
+ */
 public class Main {
     public static void main(String[] args) throws IOException {
-        //Program.startProgram();
-//        Restaurant restaurant = Restaurant.getInstance();
-//
-//        System.out.println("Bine ati venit la restaurantul " + restaurant.getName()+"!\n");
-//        restaurant.showPrettyMenu();
-//
-//        restaurant.addProductToOrder("Pizza Napoli", 2);
-//        restaurant.addProductToOrder("Pizza Margarita", 9);
-//
-//        restaurant.getOrders();
         Program.startProgram();
     }
 }
