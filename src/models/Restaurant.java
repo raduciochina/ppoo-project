@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -295,32 +296,21 @@ public class Restaurant {
                 bufferedWriter.write(order.toString());
                 bufferedWriter.newLine();
             }
-            bufferedWriter.write("Total " + LocalDate.now() + "  = " + calculateTotalPrice() + " lei.");
+            bufferedWriter.write("Total pentru ziua " + LocalDate.now() + " = " + calculateTotalPrice() + " lei.");
+            bufferedWriter.newLine();
             bufferedWriter.close();
         }
 
     }
 
-    //need to be tested
-    public List<Product> getTop3Products(){
-        List<Product> top3Products = new ArrayList<>();
+
+    public List<Product> getMostOrderedProducts(){
         List<Product> products = new ArrayList<>();
         for(Order order : this.restaurantOrders){
-            for(Product product : order.getOrderedProducts()){
-                products.add(product);
-            }
+            products.addAll(order.getOrderedProducts());
         }
-        for(int i = 0; i < 3; i++){
-            Product maxProduct = products.get(0);
-            for(Product product : products){
-                if(product.getQuantity() > maxProduct.getQuantity()){
-                    maxProduct = product;
-                }
-            }
-            top3Products.add(maxProduct);
-            products.remove(maxProduct);
-        }
-        return top3Products;
+        products.sort(Comparator.comparing(Product::getQuantity).reversed());
+        return products;
     }
 
 }

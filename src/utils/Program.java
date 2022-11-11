@@ -1,6 +1,7 @@
 package utils;
 
 import models.Order;
+import models.Product;
 import models.Restaurant;
 
 import java.io.IOException;
@@ -75,6 +76,7 @@ public class Program {
                         System.out.println("Pentru a afisa pretul unei comenzi apasati tasta 7.");
                         System.out.println("Pentru a afisa pretul total al comenzilor apasati tasta 8.");
                         System.out.println("Pentru generarea raportului fiscal Z apasati tasta 9.");
+                        System.out.println("Pentru a afisa cele mai comandate produse din meniu tasta 10.");
                         System.out.println("Pentru a iesi apasati tasta 0.");
                         int option2 = new Scanner(System.in).nextInt();
                         switch (option2) {
@@ -91,6 +93,7 @@ public class Program {
                                 System.out.println("Introduceti cantitatea produsului: ");
                                 int newProductQuantity = new Scanner(System.in).nextInt();
                                 restaurant.addProductToMenu(newProductType, newProductName, newProductPrice, newProductQuantity);
+                                restaurant.initMeniu();
                                 System.out.println("Produsul a fost adaugat cu succes!");
                                 break;
                             case 2:
@@ -140,6 +143,14 @@ public class Program {
                             case 9:
                                 List<Order> orderList = restaurant.getOrderList();
                                 restaurant.generateZ(orderList);
+                                break;
+                            case 10:
+                                List<Product> topOrderedProducts = restaurant.getMostOrderedProducts();
+                                int i = 1;
+                                for (Product p : topOrderedProducts) {
+                                    System.out.println(i + ". " + p.getName() + ", " + p.getQuantity() + " buc.");
+                                    ++i;
+                                }
                                 break;
                             default:
                                 System.out.println("Va rugam sa alegeti o optiune valida!");
